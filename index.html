@@ -145,9 +145,9 @@
         await fetch('https://i.picsum.photos/id/440/200/300.jpg?hmac=3Nx5MHMCVguEcZQ1M3RnSrCpHNn9sabFI5y6aYzvceQ').then((res) => {
             res.blob().then((blob) => {
                 console.log(window.URL.createObjectURL(blob));
-                const file = new File([blob], 'file.jpg', { type: "image/jpg" })
+                const file2 = new File([blob], 'file.jpg', { type: "image/jpg" })
                 console.log("------")
-                consolle.log(file);
+                console.log(file2);
             })
         })
   
