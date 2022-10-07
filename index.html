@@ -42,26 +42,20 @@
     }
     const title = "hello";
     const text = "hello";
-    const url = encodeURIComponent('https://i.picsum.photos/id/440/200/300.jpg?hmac=3Nx5MHMCVguEcZQ1M3RnSrCpHNn9sabFI5y6aYzvceQ');
+    const url = '';
 
     async function testWebShare() {
-
-        navigator.share({ title, text, url });
-       
-
-        // fetch('https://i.picsum.photos/id/440/200/300.jpg?hmac=3Nx5MHMCVguEcZQ1M3RnSrCpHNn9sabFI5y6aYzvceQ').then((res) => {
-        //     res.blob().then((blob) => {
-        //         const file = new File([blob], 'file.extension', { type: blob.type })
-        //         try {
-        //             navigator.share({ title, text, url });
-        //             logText('Successfully sent share');
-        //         } catch (error) {
-        //             logError('Error sharing: ' + error);
-        //         }
-
-
-        //     })
-        // })
+        fetch('https://i.picsum.photos/id/440/200/300.jpg?hmac=3Nx5MHMCVguEcZQ1M3RnSrCpHNn9sabFI5y6aYzvceQ').then((res) => {
+            res.blob().then((blob) => {
+                const file = new File([blob], 'file.jpg', { type: "image/jpg" })
+                try {
+                    navigator.share({ file, title, text, url });
+                    logText('Successfully sent share');
+                } catch (error) {
+                    logError('Error sharing: ' + error);
+                }
+            })
+        })
         // const title_input = document.querySelector('#title');
         // const text_input = document.querySelector('#text');
         // const url_input = document.querySelector('#url');
