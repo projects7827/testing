@@ -9,24 +9,70 @@
 </head>
 
 <body>
-    <button onclick="submit()">click</button>
+    <button onclick="testWebShare()">click</button>
 
 </body>
 
 <script>
 
-    async function submit() {
-        if (navigator.share) {
-            await navigator.share({
-                title: "",
-                text: "Happy Diwali from OckyPocky!!!!!",
-                url: 'https://picsum.photos/200/300',
-            })
-                .then(() => console.log('Successful share'))
-                .catch((error) => alert('Error in sharing', error));
-        }
+    // async function submit() {
+    //     if (navigator.share) {
+    //         await navigator.share({
+    //             title: "",
+    //             text: "Happy Diwali from OckyPocky!!!!!",
+    //             url: 'https://picsum.photos/200/300',
+    //         })
+    //             .then(() => console.log('Successful share'))
+    //             .catch((error) => alert('Error in sharing', error));
+    //     }
 
+    // }
+
+
+
+
+    function logError(text) {
+
+        console.error(text)
     }
+    function logText(text) {
+
+        console.log(text)
+    }
+
+    async function testWebShare() {
+        // const title_input = document.querySelector('#title');
+        // const text_input = document.querySelector('#text');
+        // const url_input = document.querySelector('#url');
+        // const title = title_input.value;
+        // const text = text_input.value;
+        // const url = url_input.value;
+        const title = "hello";
+        const text = "hello";
+        const url = 'https://i.picsum.photos/id/440/200/300.jpg?hmac=3Nx5MHMCVguEcZQ1M3RnSrCpHNn9sabFI5y6aYzvceQ';
+
+        // if (!navigator.canShare) {
+        //     logError('Warning: canShare is not supported. File sharing may not be supported at all.');
+        // } else if (!checkBasicFileShare()) {
+        //     logError('Error: File sharing is not supported in this browser.');
+        //     return;
+        // } else if (!navigator.canShare({ files })) {
+        //     logError('Error: share() does not support the given files');
+        //     for (const file of files) {
+        //         logError(`File info: name - ${file.name}, size ${file.size}, type ${file.type}`);
+        //     }
+        //     return;
+        // }
+        try {
+            await navigator.share({ title, text, url });
+            logText('Successfully sent share');
+        } catch (error) {
+            logError('Error sharing: ' + error);
+        }
+    }
+
+
+
 
 </script>
 
