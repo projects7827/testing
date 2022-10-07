@@ -9,6 +9,7 @@
 </head>
 
 <body>
+
     <button onclick="testWebShare()">click</button>
 
 </body>
@@ -39,17 +40,35 @@
 
         console.log(text)
     }
+    const title = "hello";
+    const text = "hello";
+    const url = encodeURIComponent('https://i.picsum.photos/id/440/200/300.jpg?hmac=3Nx5MHMCVguEcZQ1M3RnSrCpHNn9sabFI5y6aYzvceQ');
 
     async function testWebShare() {
+
+        navigator.share({ title, text, url });
+       
+
+        // fetch('https://i.picsum.photos/id/440/200/300.jpg?hmac=3Nx5MHMCVguEcZQ1M3RnSrCpHNn9sabFI5y6aYzvceQ').then((res) => {
+        //     res.blob().then((blob) => {
+        //         const file = new File([blob], 'file.extension', { type: blob.type })
+        //         try {
+        //             navigator.share({ title, text, url });
+        //             logText('Successfully sent share');
+        //         } catch (error) {
+        //             logError('Error sharing: ' + error);
+        //         }
+
+
+        //     })
+        // })
         // const title_input = document.querySelector('#title');
         // const text_input = document.querySelector('#text');
         // const url_input = document.querySelector('#url');
         // const title = title_input.value;
         // const text = text_input.value;
         // const url = url_input.value;
-        const title = "hello";
-        const text = "hello";
-        const url = 'https://i.picsum.photos/id/440/200/300.jpg?hmac=3Nx5MHMCVguEcZQ1M3RnSrCpHNn9sabFI5y6aYzvceQ';
+
 
         // if (!navigator.canShare) {
         //     logError('Warning: canShare is not supported. File sharing may not be supported at all.');
@@ -63,12 +82,8 @@
         //     }
         //     return;
         // }
-        try {
-            await navigator.share({ title, text, url });
-            logText('Successfully sent share');
-        } catch (error) {
-            logError('Error sharing: ' + error);
-        }
+
+
     }
 
 
