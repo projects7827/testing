@@ -49,13 +49,8 @@
             res.blob().then((blob) => {
                 console.log(window.URL.createObjectURL(blob));
                 const file = new File([blob], 'file.jpg', { type: "image/jpg" })
-                console.log(file)
-                let reader = new FileReader();
-                reader.onload = () => {
-                    console.log(reader.result);
-                }
-                reader.readAsDataURL(file)
-                navigator.share({ "file":[file], title, text, url });
+              
+                navigator.share({ "file":[file], "title":"hello", "message ":"hi", "url":"" });
                 logText('Successfully sent share');
             })
         })
