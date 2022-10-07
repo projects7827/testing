@@ -42,18 +42,21 @@
     }
     const title = "hello";
     const text = "hello";
-    const url = '';
+    const url = 'pt.com';
 
     async function testWebShare() {
-        fetch('https://i.picsum.photos/id/440/200/300.jpg?hmac=3Nx5MHMCVguEcZQ1M3RnSrCpHNn9sabFI5y6aYzvceQ').then((res) => {
+        await fetch('https://i.picsum.photos/id/440/200/300.jpg?hmac=3Nx5MHMCVguEcZQ1M3RnSrCpHNn9sabFI5y6aYzvceQ').then((res) => {
             res.blob().then((blob) => {
+                console.log(window.URL.createObjectURL(blob));
                 const file = new File([blob], 'file.jpg', { type: "image/jpg" })
-                try {
-                    navigator.share({ file, title, text, url });
-                    logText('Successfully sent share');
-                } catch (error) {
-                    logError('Error sharing: ' + error);
+                console.log(file)
+                let reader = new FileReader();
+                reader.onload = () => {
+                    console.log(reader.result);
                 }
+                reader.readAsDataURL(file)
+                navigator.share({ "file":[file], title, text, url });
+                logText('Successfully sent share');
             })
         })
         // const title_input = document.querySelector('#title');
