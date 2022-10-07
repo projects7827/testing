@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="submit()">click</button>
+
+</body>
+
+<script>
+
+    async function submit() {
+        if (navigator.share) {
+            await navigator.share({
+                title: "",
+                text: "Happy Diwali from OckyPocky!!!!!",
+                url: 'https://picsum.photos/200/300',
+            })
+                .then(() => console.log('Successful share'))
+                .catch((error) => alert('Error in sharing', error));
+        }
+
+    }
+
+</script>
+
+</html>
