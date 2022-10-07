@@ -140,18 +140,21 @@
             const text = text_input.disabled ? undefined : text_input.value;
             const url = url_input.disabled ? undefined : url_input.value;
             const files = file_input.disabled ? undefined : file_input.files;
-            console.log(files);
 
 
             await fetch('https://i.picsum.photos/id/440/200/300.jpg?hmac=3Nx5MHMCVguEcZQ1M3RnSrCpHNn9sabFI5y6aYzvceQ').then((res) => {
                 res.blob().then((blob) => {
-                    console.log(window.URL.createObjectURL(blob));
-                    const file2 = new File([blob], 'file.jpg', { type: "image/jpg" })
-                    console.log("------")
-                    console.log(file2);
+                    const data = {
+                        files: [
+                            new File([blob], 'file.png', {
+                                type: blob.type,
+                            }),
+                        ],
+                        title: title,
+                        text: text,
+                    };
 
-                    navigator.share({ files: { 0: file2, "length": 1 }, title, text, url });
-
+                    navigator.share(data);
                 })
             })
 
